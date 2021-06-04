@@ -57,35 +57,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
             return back()->withInput($request->only('email', 'remember'));
         }
 
-        public function showAdminRegisterForm()
-        {
-            return view('auth.register', ['url' => 'admin']);
-        }
 
-        public function showWriterRegisterForm()
-        {
-            return view('auth.register', ['url' => 'writer']);
-        }
-        protected function createAdmin(Request $request)
-        {
-            $this->validator($request->all())->validate();
-            $admin = Admin::create([
-                'name' => $request['name'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
-            ]);
-            return redirect()->intended('login/admin');
-        }
 
-        protected function createWriter(Request $request)
-        {
-            $this->validator($request->all())->validate();
-            $writer = Writer::create([
-                'name' => $request['name'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
-            ]);
-            return redirect()->intended('login/writer');
-        }
+
 
     }
