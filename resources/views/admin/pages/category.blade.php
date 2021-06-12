@@ -1,9 +1,17 @@
-@extends('admin.templetes.defaults')
-@section('title', '| category')
-@section('content')
+@extends('admin.default')
 
-    <div class="container">
-        @include('admin.templetes.partials.headerpanel')
+@section('title', '| post')
+@section('content')
+    {{--    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>--}}
+
+    <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script>
+
+    <div class="">
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card ">
@@ -26,7 +34,7 @@
                                         </div>
 
                                         <!-- Modal body -->
-                                        <div class="modal-body">
+                                        <div class="modal-body ps-child">
                                             <form action="{{route('category.store')}}" method="post" enctype= "multipart/form-data" >
                                                 @csrf
 
@@ -34,12 +42,17 @@
 
                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                         <div class="form-group">
-                                                            <strong>name</strong>
-                                                            <input type="text" name="name" class="form-control" placeholder="icon">
-
+                                                            <strong>Name</strong>
+                                                            <input type="text" name="name"  placeholder="name" class="form-control @error('name'){{"is-invalid"}}@enderror" value = "{{Request::old('name') ?: ''}}">
+                                                            @error('name')
+                                                            <span>{{$errors->first('name')}}</span>
+                                                            @enderror
                                                         </div>
 
                                                     </div>
+
+
+
 
 
                                                     <div class="col-xs-12 col-sm-12 col-md-12 text-left">
@@ -61,49 +74,57 @@
 
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div >
 
                         <div class="">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                <th>
-                                    ID
-                                </th>
+                            <div class="table-responsive">
+                                <table id="datatable" class="table">
+                                    <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th >
+                                        name
+                                    </th>
+                                    <th>
+                                        action
+                                    </th>
 
+                                    </thead>
+                                    <tbody>
+                                    @foreach($categorys as $category)
+                                    <tr>
 
-                                <th>
-                             category name
-                                </th>
+                                          <td>
+                                            {{$category->id}}
+                                          </td>
+                                        <td>
+                                            {{$category->name}}
+                                        </td>
 
-                                </thead>
-                                <tbody>
-                                @foreach($categories as $category)
-                                <tr>
-                                    <td>
-                                        {{$category->id}}
+                                        <td>
+                                            <a href="" title="show">
+                                                <i class="btn btn-primary btn-sm fa fa-eye" ></i>
+                                            </a>
 
-                                    </td>
+                                            <a href=""  >
+                                                <i class="btn btn-success btn-sm  fa fa-edit" ></i>
+                                            </a>
 
-                                    <td>
-                                        {{$category->name}}
-                                    </td>
-                                    <td>
+                                            <form style="display: inline-block" method="post" action="{{route('category.destroy', ['category' => $category->id])}}" >
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger  p-0"><i class="btn btn-danger btn-sm fa fa-trash" ></i></button>
+                                            </form>
 
-                                        <a href=""  >
-                                            <i class="btn btn-success btn-sm  fa fa-edit" ></i>
-                                        </a>
+                                        </td>
 
-                                        <form style="display: inline-block" method="post" action="" >
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger  p-0"><i class="btn btn-danger btn-sm fa fa-trash" ></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
+                                    </tr>
 
-                                </tbody>
-                            </table>
+                                                                @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer py-4">
@@ -116,4 +137,5 @@
             </div>
         </div>
     </div>
+
 @endsection

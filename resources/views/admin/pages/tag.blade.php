@@ -1,16 +1,24 @@
-@extends('admin.templetes.defaults')
-@section('title', '| tags')
-@section('content')
+@extends('admin.default')
 
-    <div class="container">
-        @include('admin.templetes.partials.headerpanel')
+@section('title', '| tag')
+@section('content')
+    {{--    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>--}}
+
+    <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script>
+
+    <div class="">
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card ">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-8">
-                                <h4 class="card-title">Tags</h4>
+                                <h4 class="card-title">Tag</h4>
                             </div>
                             <div class="col-4 text-right">
                                 <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">+</a>
@@ -21,24 +29,82 @@
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Creat tag</h4>
+                                            <h4 class="modal-title">Creat header Tag</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
 
                                         <!-- Modal body -->
-                                        <div class="modal-body">
-                                            <form action="{{route('tag.store')}}" method="post" enctype= "multipart/form-data" >
+                                        <div class="modal-body ps-child">
+                                            <form action="" method="post" enctype= "multipart/form-data" >
                                                 @csrf
 
                                                 <div class="row">
+
                                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                                         <div class="form-group">
-                                                            <strong>name</strong>
-                                                            <input type="text" name="name" class="form-control" placeholder="name">
+                                                            <strong>Title</strong>
+                                                            <input type="text" name="title" class="form-control" placeholder="email">
 
                                                         </div>
 
                                                     </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <div class="form-group">
+                                                            <strong>slug</strong>
+                                                            <input type="text" name="slug" class="form-control" placeholder="email">
+
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <div class="form-group">
+                                                            <strong>Category:</strong>
+                                                            <select class="form-control" name="category_id">
+                                                                <option>---select category---</option>
+                                                                {{--                                                                @foreach($categories as $category)--}}
+                                                                {{--                                                                    <option value="{{$category->id}}">{{$category->name}}</option>--}}
+                                                                {{--                                                                @endforeach--}}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+
+
+                                                        <div class="form-group">
+                                                            <label><strong>Tags:</strong></label><br>
+                                                            {{--                                                            <select name="name[]" id="cars" multiple class="form-control custom-select">--}}
+                                                            {{--                                                                @foreach($tags as $tag)--}}
+
+
+                                                            {{--                                                                    <option value="{{$tag->id}}">{{$tag->name}}</option>--}}
+                                                            {{--                                                                @endforeach--}}
+                                                            {{--                                                            </select>--}}
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <div class="form-group">
+                                                            <strong>upload image</strong>
+
+                                                            <input type="file" name="image">
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <div class="form-group">
+                                                            <strong>body</strong>
+                                                            <textarea  id="mytextarea" cols="10" rows="5" placeholder="body" class="form-control" name="body"></textarea>
+
+                                                        </div>
+
+                                                    </div>
+
+
 
 
                                                     <div class="col-xs-12 col-sm-12 col-md-12 text-left">
@@ -60,48 +126,56 @@
 
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div >
 
                         <div class="">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                <th>
-                                    ID
-                                </th>
-                                <th>
-                                    name
-                                </th>
+                            <div class="table-responsive">
+                                <table id="datatable" class="table">
+                                    <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th >
+                                        name
+                                    </th>
+                                    <th>
+                                        action
+                                    </th>
 
+                                    </thead>
+                                    <tbody>
+                                    <tr>
 
-                                </thead>
-                                <tbody>
-                                @foreach($tags as $tag)
-                                <tr>
-                                    <td>
-                                      {{$tag->id}}
-                                    </td>
-                                    <td>
-                                        {{$tag->name}}
-                                    </td>
+                                        <td>
+                                            id
+                                        </td>
+                                        <td>
+                                            name
+                                        </td>
 
+                                        <td>
+                                            <a href="" title="show">
+                                                <i class="btn btn-primary btn-sm fa fa-eye" ></i>
+                                            </a>
 
-                                    <td>
+                                            <a href=""  >
+                                                <i class="btn btn-success btn-sm  fa fa-edit" ></i>
+                                            </a>
 
-                                        <a href=""  >
-                                            <i class="btn btn-success btn-sm  fa fa-edit" ></i>
-                                        </a>
+                                            <form style="display: inline-block" method="post" action="" >
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger  p-0"><i class="btn btn-danger btn-sm fa fa-trash" ></i></button>
+                                            </form>
 
-                                        <form style="display: inline-block" method="post" action="{{route('tag.destroy',[ 'tag' => $tag->id])}}" >
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger  p-0"><i class="btn btn-danger btn-sm fa fa-trash" ></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
+                                        </td>
 
-                                </tbody>
-                            </table>
+                                    </tr>
+
+                                    {{--                            @endforeach--}}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer py-4">
@@ -114,5 +188,5 @@
             </div>
         </div>
     </div>
-@endsection
 
+@endsection

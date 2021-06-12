@@ -1,5 +1,4 @@
 
-
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.min.js" ></script>
 <script src="../assets/js/core/popper.min.js" ></script>
@@ -11,7 +10,7 @@
 <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js" ></script>
 
 <script src="../assets/js/plugins/moment.min.js"></script>
-<script src="https://cdn.tiny.cloud/1/dzq2nbo4doqks8r4ev85nuhv0bxzirce0l4tai4aza7yj42i/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
 
 
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
@@ -301,12 +300,67 @@
         });
     });
 </script>
+
+
+
+
+
 <script>
     $(document).ready(function(){
-        // Javascript method's body can be found in assets3/js/demos.js
+        // Javascript method's body can be found in assets/js/demos.js
         demo.initDashboardPageCharts();
 
         demo.initVectorMap();
 
     });
 </script>
+
+
+
+
+
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            responsive: true,
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+            }
+
+        });
+
+        var table = $('#datatable').DataTable();
+
+        // Edit record
+        table.on( 'click', '.edit', function () {
+            $tr = $(this).closest('tr');
+            if($($tr).hasClass('child')){
+                $tr = $tr.prev('.parent');
+            }
+
+
+        } );
+
+        // Delete a record
+        table.on( 'click', '.remove', function (e) {
+            $tr = $(this).closest('tr');
+            if($($tr).hasClass('child')){
+                $tr = $tr.prev('.parent');
+            }
+            table.row($tr).remove().draw();
+            e.preventDefault();
+        } );
+
+        //Like record
+        table.on( 'click', '.like', function () {
+            alert('You clicked on Like button');
+        });
+    });
+</script>
+
+
+
+

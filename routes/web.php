@@ -18,10 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.pages.dashboard');
-});
 
+Route::view('/', 'welcome');
 Route::get('/admin/register', [RegisterController::class, 'showAdminRegisterForm'])->name('showAdminRegisterForm');
 Route::get('/admin/postregister', [RegisterController::class, 'createAdmin'])->name('createAdmin');
 Route::get('/writer/register', [RegisterController::class, 'showWriterRegisterForm'])->name('showWriterRegisterForm');
@@ -33,5 +31,9 @@ Route::get('/writer/login', [LoginController::class, 'showWriterLoginForm'])->na
 Route::post('/writer/post', [LoginController::class, 'writerLogin'])->name('writer.login');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('writer', [WriterController::class, 'index'])->name('writer');
+Route::get('/writer', [WriterController::class, 'index'])->name('writer');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

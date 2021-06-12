@@ -257,7 +257,7 @@
 
       (function() {
         var li = document.createElement('script');li.type = 'text/javascript';li.async = true;
-        li.src = '//assets3.pinterest.com/js/pinit.js';
+        li.src = '//assets.pinterest.com/js/pinit.js';
         var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(li, s);
       })();
     }
