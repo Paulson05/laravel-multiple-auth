@@ -1,8 +1,8 @@
-@extends('admin.templetes.defaults')
+@extends('dashboard.admin.templetes.defaults')
 @section('title', '| heroslider')
 @section('content')
     <div class="">
-        @include('admin.templetes.partials.headerpanel')
+        @include('dashboard.admin.templetes.partials.headerpanel')
         <div class="row">
             <div class="col-md-12">
                 <div class="card ">

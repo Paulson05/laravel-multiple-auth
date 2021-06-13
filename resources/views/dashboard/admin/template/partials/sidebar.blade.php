@@ -97,14 +97,14 @@
                     <ul class="nav">
 
                         <li >
-                            <a href="{{route('post.index')}}">
+                            <a href="">
                                 <span class="sidebar-mini-icon">P</span>
                                 <span class="sidebar-normal"> Post</span>
                             </a>
                         </li>
 
                         <li >
-                            <a href="{{route('category.index')}}">
+                            <a href="">
                                 <span class="sidebar-mini-icon">C</span>
                                 <span class="sidebar-normal">Category</span>
                             </a>

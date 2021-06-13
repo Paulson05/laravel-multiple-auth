@@ -1,4 +1,4 @@
-@extends('admin.default')
+@extends('dashboard.admin.default')
 
 @section('title', '| tag')
 @section('content')

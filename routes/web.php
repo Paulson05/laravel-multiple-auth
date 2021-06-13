@@ -3,8 +3,10 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WriterController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,21 +21,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
 Route::view('/', 'welcome');
-Route::get('/admin/register', [RegisterController::class, 'showAdminRegisterForm'])->name('showAdminRegisterForm');
-Route::get('/admin/postregister', [RegisterController::class, 'createAdmin'])->name('createAdmin');
-Route::get('/writer/register', [RegisterController::class, 'showWriterRegisterForm'])->name('showWriterRegisterForm');
-Route::get('/writer/postregister', [RegisterController::class, 'createWriter'])->name('createWriter');
-
-Route::get('/admin/login', [LoginController::class, 'showAdminLoginForm'])->name('showadminlogin');
-Route::post('/admin/post', [LoginController::class, 'adminLogin'])->name('adminLogin');
-Route::get('/writer/login', [LoginController::class, 'showWriterLoginForm'])->name('showWriterLoginForm');
-Route::post('/writer/post', [LoginController::class, 'writerLogin'])->name('writer.login');
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/writer', [WriterController::class, 'index'])->name('writer');
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('user')->name('user.')->group(function (){
+
+    Route::middleware(['guest:web'])->group(function (){
+       Route::get('/login', [UserController::class, 'login'])->name('login');
+        Route::get('/register', [UserController::class, 'register'])->name('register');
+        Route::post('/create', [UserController::class, 'create'])->name('create');
+        Route::post('/check', [UserController::class, 'check'])->name('check');
+
+    });
+    Route::middleware(['auth'])->group(function (){
+        Route::get('/home', [UserController::class, 'home'])->name('home');
+        Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
+    });
+});
+
+//Auth::routes();
+
+Route::get('/home', [UserController::class, 'index'])->name('home');

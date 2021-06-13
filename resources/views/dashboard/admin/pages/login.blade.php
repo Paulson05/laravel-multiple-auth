@@ -163,7 +163,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </a>
     </li>
     <li class= "nav-item ">
-        <a href="../../pages/register.blade.php" class="nav-link">
+        <a href="../../../pages/register.blade.php" class="nav-link">
             <i class="now-ui-icons tech_mobile"></i>
             Register
         </a>
@@ -176,14 +176,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </li>
 
     <li class= "nav-item ">
-        <a href="../../pages/pricing.html" class="nav-link">
+        <a href="../../../pages/pricing.html" class="nav-link">
             <i class="now-ui-icons now-ui-icons business_money-coins"></i>
             Pricing
         </a>
     </li>
 
     <li class= "nav-item ">
-        <a href="../../pages/lock.html" class="nav-link">
+        <a href="../../../pages/lock.html" class="nav-link">
             <i class="now-ui-icons ui-1_lock-circle-open"></i>
             Lock
         </a>
