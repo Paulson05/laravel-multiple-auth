@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-//use App\Http\Controllers\Auth;
+
+use \Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
@@ -26,13 +28,26 @@ class UserController extends Controller
     }
 
     public function login(){
+
         return view('dashboard.user.login');
     }
-
-    public function check(){
+public function home(){
         return view('dashboard.user.home');
+}
+    public function check(Request $request){
+
+               $cred = $request->only('email', 'password');
+
+               if(Auth::guard('web')->attempt($cred)){
+                   return redirect()->route('user.home');
+               }else{
+                   return  redirect()->route('user.login');
+               }
+
     }
     public function logout(){
+        Auth::logout();
+        return redirect()->route('homepage');
 
     }
 }

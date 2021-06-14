@@ -9,8 +9,9 @@
             <div class="content">
                 <div class="container">
                     <div class="col-md-4 ml-auto mr-auto">
-                        <form class="form" method="" action="#">
-
+                        <h
+                        <form class="form" method="post" action="{{route('admin.create')}}">
+                                @csrf
                             <div class="card card-login card-plain">
 
                                 <div class="card-header ">
@@ -27,7 +28,7 @@
                                     <i class="now-ui-icons users_circle-08"></i>
                                   </div>
                                 </span>
-                                        <input type="text" class="form-control" placeholder="First Name...">
+                                        <input type="text" class="form-control" placeholder="email" name="email">
                                     </div>
 
                                     <div class="input-group no-border form-control-lg">
@@ -36,7 +37,7 @@
                                                 <i class="now-ui-icons text_caps-small"></i>
                                             </div>
                                         </div>
-                                        <input type="text" placeholder="Last Name..." class="form-control">
+                                        <input type="password" placeholder="password" class="form-control" name="password">
                                     </div>
 
 
@@ -46,7 +47,8 @@
 
 
                                 <div class="card-footer ">
-                                    <a href="#pablo" class="btn btn-primary btn-round btn-lg btn-block mb-3">Get Started</a>
+
+                                    <button class="btn btn-primary btn-round btn-lg btn-block mb-3">login</button>
                                     <div class="pull-left">
                                         <h6><a href="#pablo" class="link footer-link">Create Account</a></h6>
                                     </div>
@@ -57,6 +59,7 @@
                                 </div>
 
                             </div>
+
                         </form>
                     </div>
                 </div>

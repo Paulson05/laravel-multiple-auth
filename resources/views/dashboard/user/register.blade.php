@@ -9,7 +9,7 @@
         <div class="card-body ">
 
 
-            <form action="user.create" method="post" >
+            <form action="{{route('user.create')}}" method="post" >
                 @csrf
             <div class="form-group has-label">
                 <label>

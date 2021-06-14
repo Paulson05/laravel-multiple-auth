@@ -5,7 +5,6 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\WriterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome');
 Auth::routes();
 
+
 Route::prefix('user')->name('user.')->group(function (){
 
     Route::middleware(['guest:web'])->group(function (){
@@ -34,13 +34,30 @@ Route::prefix('user')->name('user.')->group(function (){
         Route::post('/check', [UserController::class, 'check'])->name('check');
 
     });
-    Route::middleware(['auth'])->group(function (){
+    Route::middleware(['auth:web'])->group(function (){
         Route::get('/home', [UserController::class, 'home'])->name('home');
         Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
     });
 });
 
+
+Route::prefix('admin')->name('admin.')->group(function (){
+
+    Route::middleware(['guest:admin'])->group(function (){
+        Route::get('/login', [AdminController::class, 'login'])->name('login');
+
+        Route::post('/create', [AdminController::class, 'create'])->name('create');
+        Route::post('/check', [AdminController::class, 'check'])->name('check');
+
+    });
+    Route::middleware(['auth:admin'])->group(function (){
+        Route::get('/home', [AdminController::class, 'home'])->name('home');
+        Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
+
+    });
+});
+
 //Auth::routes();
 
-Route::get('/home', [UserController::class, 'index'])->name('home');
+Route::get('/homepage', [HomeController::class, 'home'])->name('homepage');

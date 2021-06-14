@@ -93,27 +93,26 @@
 
                             </thead>
                             <tbody>
-                            @foreach($posts as $post)
+
                             <tr>
 
 
                                 <td>
-                                    {{$post->id}}
+                                  injn
                                 </td>
                                 <td>
-                                    {{$post->title}}
+                                 kj
                                 </td>
                                 <td>
-                                    <img  src ="/upload/images/{{$post->image}}" height= "70px;" width = "80px;">
+                                  uhu
                                 </td>
                                 <td>
-                                    {{$post->slug}}
+                                    uuh
                                 </td>
                                 <td>
-                                    {{$post->body}}
-                                </td>
+                                    iuy8yutd>
                                 <td>
-                                    {{$post->category_id}}
+                                  iui8
                                 </td>
                                 <td>
                                     <a href="" title="show">
@@ -134,7 +133,7 @@
 
                             </tr>
 
-                                                        @endforeach
+
                             </tbody>
                         </table>
                     </div>
