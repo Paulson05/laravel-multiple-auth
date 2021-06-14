@@ -9,7 +9,7 @@
             <div class="content">
                 <div class="container">
                     <div class="col-md-4 ml-auto mr-auto">
-                        <h
+
                         <form class="form" method="post" action="{{route('admin.create')}}">
                                 @csrf
                             <div class="card card-login card-plain">

@@ -15,10 +15,9 @@ class CreateWritersTable extends Migration
     {
         Schema::create('writers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('username');
             $table->string('email')->unique();
             $table->string('password');
-            $table->boolean('is_editor')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

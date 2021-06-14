@@ -31,9 +31,7 @@ class UserController extends Controller
 
         return view('dashboard.user.login');
     }
-public function home(){
-        return view('dashboard.user.home');
-}
+
     public function check(Request $request){
 
                $cred = $request->only('email', 'password');
@@ -44,6 +42,10 @@ public function home(){
                    return  redirect()->route('user.login');
                }
 
+    }
+
+    public function home(){
+        return view('dashboard.user.home');
     }
     public function logout(){
         Auth::logout();

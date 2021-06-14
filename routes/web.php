@@ -5,19 +5,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WriterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 
 
@@ -58,6 +50,22 @@ Route::prefix('admin')->name('admin.')->group(function (){
     });
 });
 
+Route::prefix('writer')->name('writer.')->group(function (){
+
+    Route::middleware(['guest:writer'])->group(function (){
+        Route::get('/login', [WriterController::class, 'login'])->name('login');
+        Route::get('/register', [WriterController::class, 'register'])->name('register');
+
+        Route::post('/create', [WriterController::class, 'create'])->name('create');
+        Route::post('/check', [WriterController::class, 'check'])->name('check');
+
+    });
+    Route::middleware(['auth:writer'])->group(function (){
+        Route::get('/writerhome', [WriterController::class, 'home'])->name('home');
+        Route::get('/logout', [WriterController::class, 'logout'])->name('logout');
+
+    });
+});
 //Auth::routes();
 
 Route::get('/homepage', [HomeController::class, 'home'])->name('homepage');
