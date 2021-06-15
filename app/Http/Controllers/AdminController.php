@@ -13,8 +13,8 @@ class AdminController extends Controller
     public function check(Request $request){
         $cred = $request->only('email', 'password');
 
-        if(Auth::guard('web')->attempt($cred)){
-            return redirect()->route('user.home');
+        if(Auth::guard('admin')->attempt($cred)){
+            return redirect()->route('admin.home');
         }else{
             return  redirect()->route('user.login');
         }

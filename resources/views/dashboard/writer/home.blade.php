@@ -7,7 +7,7 @@
                     <div class="card-header">Dashboard</div>
 
                     <div class="card-body">
-                        Hi there, awesome writer <a class="nav-link js-scroll-trigger" href="{{ route('user.logout') }}">sign out</a>
+                        Hi there, awesome writer <a class="nav-link js-scroll-trigger" href="{{ route('writer.logout') }}">sign out</a>
                     </div>
                 </div>
             </div>

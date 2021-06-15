@@ -21,7 +21,14 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
-
+     'admin' =>[
+         'driver'=> 'eloquent',
+         'model' => Admin::class
+     ],
+    'writer' =>[
+        'driver'=> 'eloquent',
+        'model' =>  Writer::class
+    ],
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -117,6 +124,14 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'admins' =>[
+            'driver'=> 'eloquent',
+            'model' => Admin::class
+        ],
+        'writers' =>[
+            'driver'=> 'eloquent',
+            'model' =>  Writer::class
         ],
     ],
 

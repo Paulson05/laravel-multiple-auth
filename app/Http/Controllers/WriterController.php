@@ -48,4 +48,10 @@ public function home(){
 
 }
 
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('homepage');
+
+    }
+
 }
